@@ -7,27 +7,21 @@ class MarsRover
     @length = length
   end
   def move_forward
-    case @direction
-      when :n
-        @y += 1
-      when :s
-        @y -= 1
-      when :e
-        @x += 1
-      when :w
-        @x -= 1
-    end
+    move 1
   end
   def move_backwards
+    move -1
+  end
+  def move(step)
     case @direction
       when :n
-        @y += -1
+        @y += step
       when :s
-        @y -= -1
+        @y -= step
       when :e
-        @x += -1
+        @x += step
       when :w
-        @x -= -1
+        @x -= step
     end
   end
   def position
