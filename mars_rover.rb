@@ -18,6 +18,18 @@ class MarsRover
   def move_backwards
     move -1
   end
+  def pivot_right
+    directions = {n: 1, e: 2, s: 3, w: 4}
+    move = directions[facing]
+    move = move == 4 ? 1 : move + 1
+    @direction = directions.key move
+  end
+  def pivot_left
+    directions = {n: 1, e: 2, s: 3, w: 4}
+    move = directions[facing]
+    move = move == 1 ? 4 : move - 1
+    @direction = directions.key move
+  end
   alias_method :F, :move_forward
   alias_method :B, :move_backwards
 
