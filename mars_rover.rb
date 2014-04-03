@@ -27,4 +27,7 @@ class MarsRover
   def position
     {:x => @x, :y => @y}
   end
+  def facing
+    @direction
+  end
 end
