@@ -18,6 +18,9 @@ class MarsRover
   	    @x -= 1
   	end
   end
+  def move_backwards
+    @y -= 1
+  end
   def position
     {:x => @x, :y => @y}
   end
