@@ -19,21 +19,20 @@ class MarsRover
     move -1
   end
   def pivot_right
-    directions = {n: 1, e: 2, s: 3, w: 4}
-    move = directions[facing]
-    move = move == 4 ? 1 : move + 1
-    @direction = directions.key move
+    pivot 1
   end
   def pivot_left
-    directions = {n: 1, e: 2, s: 3, w: 4}
-    move = directions[facing]
-    move = move == 1 ? 4 : move - 1
-    @direction = directions.key move
+    pivot -1
   end
   alias_method :F, :move_forward
   alias_method :B, :move_backwards
 
   private
+  def pivot(towards)
+    directions = {n: 0, e: 1, s: 2, w: 3}
+    move = (directions[facing] + towards) % 4
+    @direction = directions.key move
+  end
   def move(step)
     case @direction
       when :n
