@@ -19,27 +19,39 @@ describe "MarsRover" do
     	before(:each) do
         @rover = MarsRover.new 5,5,:s,10,10
       end
-      it "should be able to move forward south" do
+      it "should be able to move forward" do
         @rover.move_forward
         expect(@rover.position).to eq({:x => 5, :y => 4})
+      end
+      it "should be able to move backwards" do
+        @rover.move_backwards
+        expect(@rover.position).to eq({:x => 5, :y => 6})
       end
     end
     context "facing east" do
     	before(:each) do
         @rover = MarsRover.new 5,5,:e,10,10
       end
-      it "should be able to move forward east" do
+      it "should be able to move forward" do
         @rover.move_forward
         expect(@rover.position).to eq({:x => 6, :y => 5})
+      end
+      it "should be able to move backwards" do
+        @rover.move_backwards
+        expect(@rover.position).to eq({:x => 4, :y => 5})
       end
     end
     context "facing west" do
     	before(:each) do
         @rover = MarsRover.new 5,5,:w,10,10
       end
-      it "should be able to move forward west" do
+      it "should be able to move forward" do
         @rover.move_forward
         expect(@rover.position).to eq({:x => 4, :y => 5})
+      end
+      it "should be able to move backwards" do
+        @rover.move_backwards
+        expect(@rover.position).to eq({:x => 6, :y => 5})
       end
     end
   end
