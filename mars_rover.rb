@@ -1,10 +1,10 @@
 class MarsRover
-  def initialize x,y,direction,width,length
+  def initialize x,y,direction,horizontal_size,vertical_size
     @x = x
     @y = y
     @direction = direction
-    @width = width
-    @length = length
+    @horizontal_size = horizontal_size
+    @vertical_size = vertical_size
   end
   def position
     {:x => @x, :y => @y}
@@ -36,13 +36,13 @@ class MarsRover
   def move(step)
     case @direction
       when :n
-        @y += step
+        @y = (@y + step) % @vertical_size
       when :s
-        @y -= step
+        @y = (@y - step) % @vertical_size
       when :e
-        @x += step
+        @x = (@x + step) % @horizontal_size
       when :w
-        @x -= step
+        @x = (@x - step) % @horizontal_size
     end
   end
 end
