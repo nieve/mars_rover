@@ -1,18 +1,18 @@
 require "spec_helper"
 
 describe "MarsRover" do
-	describe "moving" do
+  describe "moving" do
     context "facing north" do
-    	before(:each) do
+      before(:each) do
         @rover = MarsRover.new 5,5,:n,10,10
-    	end
+      end
       it "should be able to move forward" do
         @rover.send('F')
         expect(@rover.position).to eq({:x => 5, :y => 6})
       end
       it "should be able to move backwards" do
         @rover.send('B')
-        expect(@rover.position).to eq({:x => 5, :y => 4})      
+        expect(@rover.position).to eq({:x => 5, :y => 4})
       end
       it "should stay facing north after moving forward" do
         @rover.send('F')
@@ -20,11 +20,11 @@ describe "MarsRover" do
       end
       it "should stay facing north after moving backwards" do
         @rover.send('B')
-        expect(@rover.facing).to eq(:n)      
+        expect(@rover.facing).to eq(:n)
       end
     end
     context "facing south" do
-    	before(:each) do
+      before(:each) do
         @rover = MarsRover.new 5,5,:s,10,10
       end
       it "should be able to move forward" do
@@ -41,11 +41,11 @@ describe "MarsRover" do
       end
       it "should stay facing south after moving backwards" do
         @rover.send('B')
-        expect(@rover.facing).to eq(:s)      
+        expect(@rover.facing).to eq(:s)
       end
     end
     context "facing east" do
-    	before(:each) do
+      before(:each) do
         @rover = MarsRover.new 5,5,:e,10,10
       end
       it "should be able to move forward" do
@@ -62,7 +62,7 @@ describe "MarsRover" do
       end
       it "should stay facing east after moving backwards" do
         @rover.send('B')
-        expect(@rover.facing).to eq(:e)      
+        expect(@rover.facing).to eq(:e)
       end
     end
     context "facing west" do
