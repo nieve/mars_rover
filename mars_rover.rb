@@ -34,15 +34,9 @@ class MarsRover
     @direction = directions.key move
   end
   def move(step)
-    case @direction
-      when :n
-        @y = (@y + step) % @vertical_size
-      when :s
-        @y = (@y - step) % @vertical_size
-      when :e
-        @x = (@x + step) % @horizontal_size
-      when :w
-        @x = (@x - step) % @horizontal_size
-    end
+    vertical = {n: 1, s: -1}
+    horizontal = {e: 1, w: -1}
+    @y = (@y + vertical[@direction] * step) % @vertical_size if vertical[@direction]
+    @x = (@x + horizontal[@direction] * step) % @horizontal_size if horizontal[@direction]
   end
 end
