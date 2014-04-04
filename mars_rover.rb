@@ -1,10 +1,11 @@
 class MarsRover
-  def initialize x,y,direction,horizontal_size,vertical_size
+  def initialize x,y,direction,horizontal_size,vertical_size,obstacles = nil
     @x = x
     @y = y
     @direction = direction
     @horizontal_size = horizontal_size
     @vertical_size = vertical_size
+    @obstacles = obstacles || []
   end
   def position
     {:x => @x, :y => @y}
@@ -36,7 +37,13 @@ class MarsRover
   def move(step)
     vertical = {n: 1, s: -1}
     horizontal = {e: 1, w: -1}
-    @y = (@y + vertical[@direction] * step) % @vertical_size if vertical[@direction]
-    @x = (@x + horizontal[@direction] * step) % @horizontal_size if horizontal[@direction]
+    y = vertical[@direction] ? (@y + vertical[@direction] * step) % @vertical_size : @y
+    x = horizontal[@direction] ? (@x + horizontal[@direction] * step) % @horizontal_size : @x
+    raise ObstacleException, "obstacle found" if @obstacles.include?({:x => x, :y => y})
+    @x = x
+    @y = y
   end
+end
+
+class ObstacleException < Exception	
 end
