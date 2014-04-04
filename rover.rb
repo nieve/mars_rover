@@ -1,4 +1,4 @@
-class MarsRover
+class Rover
   def initialize x,y,direction,horizontal_size,vertical_size,obstacles = nil
     set_position({:x => x, :y => y})
     @direction = direction
@@ -6,7 +6,7 @@ class MarsRover
     @vertical_size = vertical_size
     @obstacles = obstacles || []
   end
-  def position; {:x => @x, :y => @y}; end
+  def position; {:x => @x, :y => @y, :facing => @direction}; end
   def facing; @direction; end
   def move_forward; move 1; end
   def move_backwards; move -1; end
@@ -14,6 +14,8 @@ class MarsRover
   def pivot_left; pivot -1; end
   alias_method :F, :move_forward
   alias_method :B, :move_backwards
+  alias_method :R, :pivot_right
+  alias_method :L, :pivot_left
 
   private
   def set_position(position)
