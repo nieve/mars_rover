@@ -12,6 +12,9 @@ class Rover
   def move_backwards; move -1; end
   def pivot_right; pivot 1; end
   def pivot_left; pivot -1; end
+  def run_commands commands
+    commands.split('').each{|cmd| send(cmd)}
+  end
   alias_method :F, :move_forward
   alias_method :B, :move_backwards
   alias_method :R, :pivot_right
