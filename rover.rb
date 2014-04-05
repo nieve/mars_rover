@@ -30,15 +30,19 @@ class Rover
     move = (directions[facing] + towards) % 4
     @direction = directions.key move
   end
-  def move(step)
-    vertical = {n: 1, s: -1}
-    horizontal = {e: 1, w: -1}
-    y = vertical[@direction] ? (@y + vertical[@direction] * step) % @vertical_size : @y
-    x = horizontal[@direction] ? (@x + horizontal[@direction] * step) % @horizontal_size : @x
-    raise ObstacleException, "obstacle found" if @obstacles.include?({:x => x, :y => y})
-    set_position({:x => x, :y => y})
+  def move(steps)
+    position = {:x => @x, :y => @y}
+    move_to = {
+      :n => lambda{ position[:y] = (@y + steps) % @vertical_size },
+      :e => lambda{ position[:x] = (@x + steps) % @horizontal_size },
+      :s => lambda{ position[:y] = (@y - steps) % @vertical_size },
+      :w => lambda{ position[:x] = (@x - steps) % @horizontal_size }
+    }
+    move_to[@direction].call
+    raise ObstacleException, "obstacle found" if @obstacles.include?(position)
+    set_position(position)
   end
 end
 
-class ObstacleException < Exception	
+class ObstacleException < Exception 
 end
