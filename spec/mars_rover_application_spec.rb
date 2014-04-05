@@ -22,5 +22,9 @@ describe "MarsRoverApplication" do
       result = MarsRoverApplication.run 2,0,:w,10,10,"FFFFFFFFFFFRFFFFFFFFFFF"
       expect(result).to eq({x: 1, y: 1, facing: :n})
     end
+    it "should stop at the position before hitting an obstacle" do
+      result = MarsRoverApplication.run 68,56,:w,100,100,"FRBRRFFLBBBRRFFFFFLLBBLBRRFFF",[{x: 63, y: 53}]
+      expect(result).to eq({x: 64, y: 53, facing: :e})
+    end
   end
 end
