@@ -55,17 +55,4 @@ describe "Rover" do
       end
     end
   end
-  describe "after moving" do
-    before(:each) do
-      @rover = Rover.new 5,5,:n,10,10
-    end
-    it "should stay facing the same direction after moving forward" do
-      @rover.send('F')
-      expect(@rover.facing).to eq(:n)
-    end
-    it "should stay facing the same direction after moving backwards" do
-      @rover.send('B')
-      expect(@rover.facing).to eq(:n)
-    end
-  end
 end
